@@ -10,12 +10,12 @@ var imageForDom, trackImages;
 
 //OBJECT CONSTRUCTORS
 //url should return the img link for display on page, displayCount is number of times this shows on the page, clickCount is the number of times this image was clicked on, and Display Name is the friendly name for SWEET CHARTS
-function ProductSelection(imageLink, displayName, identityTag){
+function ProductSelection(imageLink, displayName){
   this.imageLink = imageLink;
   this.displayCount = 0;
   this.clickCount = 0;
   this.displayName = displayName;
-  this.identity = identityTag
+  this.identity = imageLink.slice(4,-4);
 }
 
 //FUNCTION PARTY TOWNHOUSE, BYOB
@@ -27,6 +27,7 @@ function selectNewImages() {
     var imageForDom = document.getElementById('selector-section');
     var img = document.createElement('img');
     img.className += 'product-choices';
+    img.id = productArray[randNum].identity;
     img.src = productArray[randNum].imageLink;
     productArray[randNum].displayCount++;
     imageForDom.appendChild(img);
