@@ -1,15 +1,16 @@
 //GLOBAL VARIABLES!
 //total number of clicks - after 25 offer choice to see stats
 var totalClicks = 0;
-//initialize product array
+//initialize product array - will be an array of objects via ProductSelection constructor
 var productArray = [];
 //initialize all product variables
 var bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulu, dogduck, dragon, pen, petsweep, scissors, shark, sweep, tauntaun, unicorn, usb, watercan, wineglass;
-//idgi
+//probably variables I should keep track of ¯\_(ツ)_/¯
+
 var imageForDom, trackImages;
 
 //OBJECT CONSTRUCTORS
-//url should return the img link for display on page, displayCount is number of times this shows on the page, clickCount is the number of times this image was clicked on, and Display Name is the friendly name for SWEET CHARTS
+//url should return the img link for display on page, displayCount is number of times this shows on the page, clickCount is the number of times this image was clicked on, Display Name is the friendly name for SWEET CHARTS, identity will be attached to each image for an id= field for clickCount
 function ProductSelection(imageLink, displayName){
   this.imageLink = imageLink;
   this.displayCount = 0;
@@ -18,7 +19,8 @@ function ProductSelection(imageLink, displayName){
   this.identity = imageLink.slice(4,-4);
 }
 
-//FUNCTION PARTY TOWNHOUSE, BYOB
+//FUNCTION PARTY TOWNHOUSE, BYOB BUT SNACKS PROVIDED
+//for loop determines how many images are shown at once, i < 3 means 3 images at once
 function selectNewImages() {
   for (i = 0; i < 3; i++) {
     //pick image from the productArray
@@ -26,7 +28,7 @@ function selectNewImages() {
     //create element for DOM, attach to DOM, iterate displayCount++
     var imageForDom = document.getElementById('selector-section');
     var img = document.createElement('img');
-    img.className += 'product-choices';
+    img.className += ' product-choices';
     img.id = productArray[randNum].identity;
     img.src = productArray[randNum].imageLink;
     productArray[randNum].displayCount++;
@@ -40,13 +42,13 @@ function getRandomIntInclusive(min, max) {
 
 //clear the section for a new set of 3
 function clearImages() {
-  var section = document.getElementById('selector-section');
-  while(section.firstChild){
-    section.removeChild(section.firstChild);
+  var sectionContainer = document.getElementById('selector-section');
+  while(sectionContainer.firstChild){
+    sectionContainer.removeChild(sectionContainer.firstChild);
   }
 };
 
-//controls total clicks from  user
+//controls total clicks from  user - mostly a placeholder for tomorrow
 function continueLoop() {
   // if (totalClicks < 25 ) {
   clearImages();
@@ -87,11 +89,17 @@ wineglass = productArray.push(new ProductSelection('img/wine-glass.jpg','Goofy W
 //this function starts the party
 selectNewImages();
 
-//event handler - totalClicks++ counts total number of image iterations so the option for charts can be set at 25
+//event handler - totalClicks++ counts total number of image iterations so the option for charts can be given at 25 and 35 (potentially 45, 55, etc...?)
 function handleImageClick(event){
   totalClicks++;
-  console.log('event.target parent: ', parent.event.target);
-  console.log('totalClicks: ', totalClicks);
+  console.log('current totalClicks: ', totalClicks);
+  var currentImageIdentity = event.target.id;
+  console.log('event.target.id ', currentImageIdentity)
+  for (i = 0; i < productArray.length; i++) {
+    if (currentImageIdentity === productArray[i].identity) {
+      productArray[i].clickCount++;
+    }
+  }
   continueLoop();
 }
 
