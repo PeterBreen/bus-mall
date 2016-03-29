@@ -5,6 +5,8 @@ var totalClicks = 0;
 var productArray = [];
 //initialize all product variables
 var bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulu, dogduck, dragon, pen, petsweep, scissors, shark, sweep, tauntaun, unicorn, usb, watercan, wineglass;
+//idgi
+var imageForDom, trackImages;
 
 //OBJECT CONSTRUCTORS
 //url should return the img link for display on page, displayCount is number of times this shows on the page, clickCount is the number of times this image was clicked on, and Display Name is the friendly name for SWEET CHARTS
@@ -47,6 +49,10 @@ function continueLoop() {
   if (totalClicks < 25 ) {
     clearImages();
     selectNewImages();
+    var trackImages = document.getElementsByClassName('product-choices');
+    for (var i = 0; i < trackImages.length; i++){
+      trackImages[i].addEventListener('click', handleImageClick);
+    }
   } else {
     console.log('you clicked 25 times');
   }
