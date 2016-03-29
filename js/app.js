@@ -19,14 +19,17 @@ function ProductSelection(imageLink, displayName){
 function selectNewImages() {
   for (i = 0; i < 3; i++) {
     //pick image from the productArray
-    var randNum = getRandomIntInclusive(0, productArray.length);
-    
-    //create element for DOM
-    //attach element to DOM
-    //iterate ++ on displayCount
+    var randNum = getRandomIntInclusive(0, productArray.length - 1);
+    //create element for DOM, attach to DOM, iterate displayCount++
+    var imageForDom = document.getElementById('selector-section');
+    var img = document.createElement('img');
+    img.className += 'product-choices';
+    img.src = productArray[randNum].imageLink;
+    productArray[randNum].displayCount++;
+    imageForDom.appendChild(img);
   }
-}
-
+};
+//randomizer function
 function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -46,20 +49,21 @@ pen = productArray.push(new ProductSelection('img/pen.jpg','Utinsil Pen'));
 petsweep = productArray.push(new ProductSelection('img/pet-sweep.jpg','Pet Broom Slippers'));
 scissors = productArray.push(new ProductSelection('img/scissors.jpg','Pizza Scissors'));
 shark = productArray.push(new ProductSelection('img/shark.jpg','Shark Sleeping Bag'));
-sweep = productArray.push(new ProductSelection('img/sweep.jpg','Baby Sweeper Onesie'));
+sweep = productArray.push(new ProductSelection('img/sweep.png','Baby Sweeper Onesie'));
 tauntaun = productArray.push(new ProductSelection('img/tauntaun.jpg','Tauntaun Sleeping Bag'));
 unicorn = productArray.push(new ProductSelection('img/unicorn.jpg','Unicorn Meat'));
 usb = productArray.push(new ProductSelection('img/usb.gif','USB Powered Tentacle'));
 watercan = productArray.push(new ProductSelection('img/water-can.jpg','Boring Watering Can'));
 wineglass = productArray.push(new ProductSelection('img/wine-glass.jpg','Goofy Wineglass'));
 
-
+//this function starts the function
+selectNewImages();
 
 //event handler - totalClicks++ counts total number of image iterations so the option for charts can be set at 25
 function handleImageClick(event){
   totalClicks++;
   console.log('event.target: ', event.target);
-  console.log('number of clicks: ', totalClicks);
+  console.log(totalClicks)
 }
 
 //event listener - listens for user clicks on image elements
