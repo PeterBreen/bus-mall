@@ -17,4 +17,6 @@ align-items: center;
 .product-choices {
   flex-basis: calc(33% - 10px);
   max-width: 310px;
+  border: 1px solid #000;
+  border-radius: 25px;
 }
