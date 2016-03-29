@@ -94,7 +94,7 @@ function handleImageClick(event){
   totalClicks++;
   console.log('current totalClicks: ', totalClicks);
   var currentImageIdentity = event.target.id;
-  console.log('event.target.id ', currentImageIdentity)
+  console.log('event.target.id ', currentImageIdentity);
   for (i = 0; i < productArray.length; i++) {
     if (currentImageIdentity === productArray[i].identity) {
       productArray[i].clickCount++;
