@@ -46,15 +46,17 @@ function clearImages() {
 
 //controls total clicks from  user
 function continueLoop() {
-  if (totalClicks < 25 ) {
-    clearImages();
-    selectNewImages();
-    var trackImages = document.getElementsByClassName('product-choices');
-    for (var i = 0; i < trackImages.length; i++){
-      trackImages[i].addEventListener('click', handleImageClick);
-    }
-  } else {
-    console.log('you clicked 25 times');
+  // if (totalClicks < 25 ) {
+  clearImages();
+  selectNewImages();
+  var trackImages = document.getElementsByClassName('product-choices');
+  for (var i = 0; i < trackImages.length; i++){
+    trackImages[i].addEventListener('click', handleImageClick);
+  //   }
+  // } else if (totalClicks === 25 ) {
+  //   console.log('you clicked 25 times');
+  //   continue allowing user to guess 10 more times if they accept
+  // } else if (totalClicks === 35)
   }
 }
 
