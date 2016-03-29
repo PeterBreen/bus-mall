@@ -1,0 +1,9 @@
+html, body {
+font-size: 16px;
+background-color: #ddd;
+}
+body {
+background-color: #fff;
+margin: 0 auto;
+padding: 30px;
+}
