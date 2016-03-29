@@ -10,11 +10,12 @@ var imageForDom, trackImages;
 
 //OBJECT CONSTRUCTORS
 //url should return the img link for display on page, displayCount is number of times this shows on the page, clickCount is the number of times this image was clicked on, and Display Name is the friendly name for SWEET CHARTS
-function ProductSelection(imageLink, displayName){
+function ProductSelection(imageLink, displayName, identityTag){
   this.imageLink = imageLink;
   this.displayCount = 0;
   this.clickCount = 0;
   this.displayName = displayName;
+  this.identity = identityTag
 }
 
 //FUNCTION PARTY TOWNHOUSE, BYOB
@@ -88,7 +89,7 @@ selectNewImages();
 //event handler - totalClicks++ counts total number of image iterations so the option for charts can be set at 25
 function handleImageClick(event){
   totalClicks++;
-  console.log('event.target: ', event.target);
+  console.log('event.target parent: ', parent.event.target);
   console.log('totalClicks: ', totalClicks);
   continueLoop();
 }
