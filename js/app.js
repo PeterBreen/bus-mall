@@ -34,6 +34,24 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+//clear the section for a new set of 3
+function clearImages() {
+  var section = document.getElementById('selector-section');
+  while(section.firstChild){
+    section.removeChild(section.firstChild);
+  }
+};
+
+//controls total clicks from  user
+function continueLoop() {
+  if (totalClicks < 25 ) {
+    clearImages();
+    selectNewImages();
+  } else {
+    console.log('you clicked 25 times');
+  }
+}
+
 //create objects - one per product, then push into productArray;
 bag = productArray.push(new ProductSelection('img/bag.jpg','R2D2 Luggage'));
 banana = productArray.push(new ProductSelection('img/banana.jpg', 'Banana Slicer'));
@@ -56,14 +74,15 @@ usb = productArray.push(new ProductSelection('img/usb.gif','USB Powered Tentacle
 watercan = productArray.push(new ProductSelection('img/water-can.jpg','Boring Watering Can'));
 wineglass = productArray.push(new ProductSelection('img/wine-glass.jpg','Goofy Wineglass'));
 
-//this function starts the function
+//this function starts the party
 selectNewImages();
 
 //event handler - totalClicks++ counts total number of image iterations so the option for charts can be set at 25
 function handleImageClick(event){
   totalClicks++;
   console.log('event.target: ', event.target);
-  console.log(totalClicks)
+  console.log('totalClicks: ', totalClicks);
+  continueLoop();
 }
 
 //event listener - listens for user clicks on image elements
