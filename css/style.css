@@ -1,0 +1,22 @@
+html, body {
+font-size: 16px;
+background-color: #ddd;
+}
+body {
+background-color: #fff;
+margin: 0 auto;
+padding: 30px;
+max-width: 960px;
+}
+.selector-section {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+}
+.product-choices {
+  flex-basis: calc(33% - 10px);
+  max-width: 310px;
+  border: 1px solid #000;
+  border-radius: 25px;
+}
