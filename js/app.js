@@ -6,8 +6,9 @@ var productArray = [];
 //initialize all product variables
 var bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulu, dogduck, dragon, pen, petsweep, scissors, shark, sweep, tauntaun, unicorn, usb, watercan, wineglass;
 //probably variables I should keep track of ¯\_(ツ)_/¯
-
 var imageForDom, trackImages;
+//user wants to do 10 additional clicks after 25
+var userMoreTesting = false;
 
 //OBJECT CONSTRUCTORS
 //url should return the img link for display on page, displayCount is number of times this shows on the page, clickCount is the number of times this image was clicked on, Display Name is the friendly name for SWEET CHARTS, identity will be attached to each image for an id= field for clickCount
