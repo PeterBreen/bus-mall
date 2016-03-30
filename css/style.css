@@ -1,6 +1,13 @@
+/*colors:
+green: #468966;
+light yellow: #FFF0A5;
+orange: #FFB03B;
+light/med red: #B64926;
+dark red: #8E2800;*/
+
 html, body {
 font-size: 16px;
-background-color: #ddd;
+background-color: #FFF0A5;
 font-family: 'Roboto Condensed', sans-serif;
 }
 body {
@@ -8,6 +15,9 @@ background-color: #fff;
 margin: 0 auto;
 padding: 1px 30px 30px 30px;
 max-width: 960px;
+}
+h1 {
+color: #8e2800;
 }
 .selector-section {
 display: flex;
@@ -26,4 +36,21 @@ hr {
 height: 1px;
 border: none;
 background-color: #ddd;
+}
+.button-section {
+  text-align: center;
+  display: none;
+}
+button {
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+  margin: 0px 10px;
+}
+.confirm {
+  color: #fff;
+  background-color: #468966;
+}
+.deny {
+  color: #fff;
+  background-color: #B64926;
 }
