@@ -5,7 +5,7 @@ background-color: #ddd;
 body {
 background-color: #fff;
 margin: 0 auto;
-padding: 30px;
+padding: 1px 30px 30px 30px;
 max-width: 960px;
 }
 .selector-section {
@@ -13,10 +13,16 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
+margin-bottom: 3rem;
 }
 .product-choices {
   flex-basis: calc(33% - 10px);
   max-width: 310px;
   border: 1px solid #000;
   border-radius: 25px;
+}
+hr {
+height: 1px;
+border: none;
+background-color: #ddd;
 }
