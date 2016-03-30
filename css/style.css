@@ -50,3 +50,10 @@ button {
 .chart-section {
   margin: 0 auto;
 }
+/*made explicit for toggle function*/
+h2.instructions-h2 {
+display: block;
+}
+h2.results-h2 {
+  display: none;
+}
