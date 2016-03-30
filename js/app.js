@@ -4,6 +4,8 @@ var totalClicks = 0;
 //initialize product array - will be an array of objects via ProductSelection constructor
 var productArray = [];
 var productTitles = [];
+var storedClicks = [];
+var storedDisplays = [];
 //initialize all product variables
 var bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulu, dogduck, dragon, pen, petsweep, scissors, shark, sweep, tauntaun, unicorn, usb, watercan, wineglass;
 //probably variables I should keep track of ¯\_(ツ)_/¯
@@ -86,15 +88,16 @@ function sumArrayValues(input1, input2) {
 //get and combine localstorage values and combine with current session, then update localstorage
 function combinedClickTotal() {
   var storedClicks = JSON.parse(localStorage.getItem('storedClicks'));
+  var currentClicks = [];
   for (i = 0; i < productArray.length; i++) {
     currentClicks.push(productArray[i].clickCount);
   }
   if (storedClicks) {
-    productClicksArray = sumArrayValues(checkClicks, SessionClicks);
-    localStorage.setItem(storedClicks, JSON.stringify(productClicksArray));
+    productClicksArray = sumArrayValues(storedClicks, currentClicks);
+    localStorage.setItem('storedClicks', JSON.stringify(productClicksArray));
   } else {
     productClicksArray = currentClicks;
-    localStorage.setItem(storedClicks, JSON.stringify(productClicksArray));
+    localStorage.setItem('storedClicks', JSON.stringify(productClicksArray));
   }
   return productClicksArray;
 }
