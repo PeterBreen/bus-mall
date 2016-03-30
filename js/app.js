@@ -3,10 +3,11 @@
 var totalClicks = 0;
 //initialize product array - will be an array of objects via ProductSelection constructor
 var productArray = [];
+var productTitles = [];
 //initialize all product variables
 var bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulu, dogduck, dragon, pen, petsweep, scissors, shark, sweep, tauntaun, unicorn, usb, watercan, wineglass;
 //probably variables I should keep track of ¯\_(ツ)_/¯
-var imageForDom, trackImages;
+var imageForDom, trackImages, dataResults, ctx, testingResultsBarChart;
 //user wants to do 10 additional clicks after 25
 var userMoreTesting = false;
 
@@ -51,6 +52,30 @@ function clearImages() {
 
 function displayCharts() {
   console.log('LOOKS LIKE IT IS CHART TIME');
+  //SPECIAL CHART SUB-ZONE #4: I HATE UNDERWATER LEVELS IN MARIO GAMES
+  var dataResults = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: 'My First dataset',
+        fillColor: 'rgba(220,220,220,0.5)',
+        strokeColor: 'rgba(220,220,220,0.8)',
+        highlightFill: 'rgba(220,220,220,0.75)',
+        highlightStroke: 'rgba(220,220,220,1)',
+        data: [65, 59, 80, 81, 56, 55, 40]
+      },
+      {
+        label: 'My Second dataset',
+        fillColor: 'rgba(151,187,205,0.5)',
+        strokeColor: 'rgba(151,187,205,0.8)',
+        highlightFill: 'rgba(151,187,205,0.75)',
+        highlightStroke: 'rgba(151,187,205,1)',
+        data: [28, 48, 40, 19, 86, 27, 90]
+      }
+    ]
+  };
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var testingResultsBarChart = new Chart(ctx).Bar(dataResults);
 }
 
 function askUserToContinue() {
@@ -88,7 +113,7 @@ function continueLoop() {
     for (var i = 0; i < trackImages.length; i++){
       trackImages[i].addEventListener('click', handleImageClick);
     }
-  } else if (totalClicks === 35) {
+  } else if (totalClicks === 35 || totalClicks > 35) {
     clearImages();
     displayCharts();
   } else {
