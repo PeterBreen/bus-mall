@@ -80,17 +80,6 @@ function continueLoop() {
     //prompt user to continue or go direct to scoring
     clearImages();
     askUserToContinue();
-    if (userMoreTesting === true) {
-      clearImages();
-      selectNewImages();
-      var trackImages = document.getElementsByClassName('product-choices');
-      for (var i = 0; i < trackImages.length; i++){
-        trackImages[i].addEventListener('click', handleImageClick);
-      }
-    } else {
-      clearImages();
-      displayCharts();
-    }
   } else if (totalClicks < 25 && totalClicks < 35) {
     //continue providing images until 35
     clearImages();
@@ -103,9 +92,15 @@ function continueLoop() {
     clearImages();
     displayCharts();
   } else {
-    console.log('DANGER WILL ROBINSON - HOW DID YOU GET HERE?');
+    //continues loop after user choice until it hits another condition for some reason
+    clearImages();
+    selectNewImages();
+    var trackImages = document.getElementsByClassName('product-choices');
+    for (var i = 0; i < trackImages.length; i++){
+      trackImages[i].addEventListener('click', handleImageClick);
+    }
   }
-}
+};
 
 //create objects - one per product, then push into productArray;
 bag = productArray.push(new ProductSelection('img/bag.jpg','R2D2 Luggage'));
@@ -146,8 +141,27 @@ function handleImageClick(event){
   continueLoop();
 }
 
-//event listener - listens for user clicks on image elements
+function userChoice(event){
+  if (event.target.id === 'confirm') {
+    toggleVisibility('button-section');
+    selectNewImages();
+    var trackImages = document.getElementsByClassName('product-choices');
+    for (var i = 0; i < trackImages.length; i++){
+      trackImages[i].addEventListener('click', handleImageClick);
+    }
+  } else {
+    console.log('user wants to go to charts');
+    toggleVisibility('button-section');
+    displayCharts();
+  }
+};
+
+//event listeners - listens for user clicks
 var trackImages = document.getElementsByClassName('product-choices');
 for (var i = 0; i < trackImages.length; i++){
   trackImages[i].addEventListener('click', handleImageClick);
+}
+var userChoiceSelection = document.getElementsByClassName('button');
+for (var i = 0; i < userChoiceSelection.length; i++){
+  userChoiceSelection[i].addEventListener('click', userChoice);
 }
