@@ -24,22 +24,44 @@ function ProductSelection(imageLink, displayName){
 //FUNCTION PARTY TOWNHOUSE, BYOB BUT SNACKS PROVIDED
 //for loop determines how many images are shown at once, i < 3 means 3 images at once
 function selectNewImages() {
+  var randNum = getRandomArray();
   for (i = 0; i < 3; i++) {
     //pick image from the productArray
-    var randNum = getRandomIntInclusive(0, productArray.length - 1);
     //create element for DOM, attach to DOM, iterate displayCount++
     var imageForDom = document.getElementById('selector-section');
     var img = document.createElement('img');
     img.className += ' product-choices';
-    img.id = productArray[randNum].identity;
-    img.src = productArray[randNum].imageLink;
-    productArray[randNum].displayCount++;
+    img.id = productArray[randNum[i]].identity;
+    img.src = productArray[randNum[i]].imageLink;
+    productArray[randNum[i]].displayCount++;
     imageForDom.appendChild(img);
   }
 };
+//shuffle array function - for randomizing. from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  // While there remain elements to shuffle
+  while (0 !== currentIndex) {
+    // Pick a remaining element
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    // And swap it with the current element
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
 //randomizer function
-function getRandomIntInclusive(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function getRandomArray() {
+  // return Math.floor(Math.random() * (max - min + 1)) + min;
+  var shuffledArray = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]);
+  //splice to only return 3 values
+  var randomThreeArray = shuffledArray.splice(0, 3);
+  //return array of 3 random no-duplicate numbers
+  console.log('random3array: ', randomThreeArray);
+  return randomThreeArray;
 };
 
 //clear the section for a new set of 3
@@ -51,7 +73,7 @@ function clearImages() {
 };
 
 function displayCharts() {
-  console.log('LOOKS LIKE IT IS CHART TIME');
+  console.log('LOOKS LIKE IT IS CHART TIME - you just called displayCharts()');
   //SPECIAL CHART SUB-ZONE #4: I HATE UNDERWATER LEVELS IN MARIO GAMES
   var productLabelsArray = [];
   for (i = 0; i < productArray.length; i++) {
@@ -67,7 +89,12 @@ function displayCharts() {
   }
   var conversionRateArray = [];
   for (i = 0; i < productArray.length; i++) {
-    conversionRateArray.push(productArray[i].clickCount / productArray[i].displayCount);
+    var percentClicked = productArray[i].clickCount / productArray[i].displayCount;
+    if(isNan(percentClicked)) {
+      this.data.push(0);
+    } else {
+      this.data.push(percentClicked * 100);
+    }
   }
   var dataResults = {
     labels: productLabelsArray,
@@ -89,7 +116,7 @@ function displayCharts() {
         data: productClicksArray
       },
       {
-        label: 'Conversion Rate',
+        label: 'Conversion Rate \%',
         fillColor: 'rgba(142,40,0,0.5)',
         strokeColor: 'rgba(142,40,0,0.8)',
         highlightFill: 'rgba(142,40,0,0.75)',
@@ -103,7 +130,7 @@ function displayCharts() {
 }
 
 function askUserToContinue() {
-  console.log('Want to answer 10 more questions? Well? Do you?');
+  console.log('Want to answer 10 more questions? Well? Do you? askUserToContinue() wants to know');
   toggleVisibility('button-section');
 }
 
@@ -129,7 +156,7 @@ function continueLoop() {
     //prompt user to continue or go direct to scoring
     clearImages();
     askUserToContinue();
-  } else if (totalClicks < 25 && totalClicks < 35) {
+  } else if (totalClicks > 25 && totalClicks < 35) {
     //continue providing images until 35
     clearImages();
     selectNewImages();
@@ -199,7 +226,7 @@ function userChoice(event){
       trackImages[i].addEventListener('click', handleImageClick);
     }
   } else {
-    console.log('user wants to go to charts');
+    console.log('userChoice() - user wants to go to charts');
     toggleVisibility('button-section');
     displayCharts();
   }
