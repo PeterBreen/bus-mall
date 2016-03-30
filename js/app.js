@@ -72,6 +72,33 @@ function clearImages() {
   }
 };
 
+//sum two arrays value by value - note inputs must be same length
+function sumArrayValues(input1, input2) {
+  combinedArray = [];
+  if(input1.length === input2.length) {
+    for (i = 0; i < input1.length; i++) {
+      combinedArray[i] += input1[i] += input2[i];
+    }
+    return combinedArray;
+  }
+}
+
+//get and combine localstorage values and combine with current session, then update localstorage
+function combinedClickTotal() {
+  var storedClicks = JSON.parse(localStorage.getItem('storedClicks'));
+  for (i = 0; i < productArray.length; i++) {
+    currentClicks.push(productArray[i].clickCount);
+  }
+  if (storedClicks) {
+    productClicksArray = sumArrayValues(checkClicks, SessionClicks);
+    localStorage.setItem(storedClicks, JSON.stringify(productClicksArray));
+  } else {
+    productClicksArray = currentClicks;
+    localStorage.setItem(storedClicks, JSON.stringify(productClicksArray));
+  }
+  return productClicksArray;
+}
+
 function displayCharts() {
   console.log('LOOKS LIKE IT IS CHART TIME - you just called displayCharts()');
   document.getElementById('instructions-h2').style.display = 'none';
@@ -81,10 +108,7 @@ function displayCharts() {
   for (i = 0; i < productArray.length; i++) {
     productLabelsArray.push(productArray[i].displayName);
   }
-  var productClicksArray = [];
-  for (i = 0; i < productArray.length; i++) {
-    productClicksArray.push(productArray[i].clickCount);
-  }
+  var productClicksArray = combinedClickTotal();
   var productDisplayArray = [];
   for (i = 0; i < productArray.length; i++) {
     productDisplayArray.push(productArray[i].displayCount);
