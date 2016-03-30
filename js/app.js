@@ -49,19 +49,51 @@ function clearImages() {
   }
 };
 
-//controls total clicks from  user - mostly a placeholder for tomorrow
+function displayCharts() {
+  console.log('LOOKS LIKE IT IS CHART TIME');
+}
+
+function askUserToContinue() {
+  console.log('Want to answer 10 more questions? Well? Do you?');
+}
+
+//controls total clicks from  user - main logic loop
 function continueLoop() {
-  // if (totalClicks < 25 ) {
-  clearImages();
-  selectNewImages();
-  var trackImages = document.getElementsByClassName('product-choices');
-  for (var i = 0; i < trackImages.length; i++){
-    trackImages[i].addEventListener('click', handleImageClick);
-  //   }
-  // } else if (totalClicks === 25 ) {
-  //   console.log('you clicked 25 times');
-  //   continue allowing user to guess 10 more times if they accept
-  // } else if (totalClicks === 35)
+  if (totalClicks < 25) {
+    clearImages();
+    selectNewImages();
+    var trackImages = document.getElementsByClassName('product-choices');
+    for (var i = 0; i < trackImages.length; i++){
+      trackImages[i].addEventListener('click', handleImageClick);
+    }
+  } else if (totalClicks === 25 ) {
+    //prompt user to continue or go direct to scoring
+    clearImages();
+    askUserToContinue();
+    if (userMoreTesting === true) {
+      clearImages();
+      selectNewImages();
+      var trackImages = document.getElementsByClassName('product-choices');
+      for (var i = 0; i < trackImages.length; i++){
+        trackImages[i].addEventListener('click', handleImageClick);
+      }
+    } else {
+      clearImages();
+      displayCharts();
+    }
+  } else if (totalClicks < 25 && totalClicks < 35) {
+    //continue providing images until 35
+    clearImages();
+    selectNewImages();
+    var trackImages = document.getElementsByClassName('product-choices');
+    for (var i = 0; i < trackImages.length; i++){
+      trackImages[i].addEventListener('click', handleImageClick);
+    }
+  } else if (totalClicks === 35) {
+    clearImages();
+    displayCharts();
+  } else {
+    console.log('DANGER WILL ROBINSON - HOW DID YOU GET HERE?');
   }
 }
 
