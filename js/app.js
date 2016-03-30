@@ -90,10 +90,10 @@ function displayCharts() {
   var conversionRateArray = [];
   for (i = 0; i < productArray.length; i++) {
     var percentClicked = productArray[i].clickCount / productArray[i].displayCount;
-    if(isNan(percentClicked)) {
-      this.data.push(0);
+    if(isNaN(percentClicked)) {
+      conversionRateArray.push(0);
     } else {
-      this.data.push(percentClicked * 100);
+      conversionRateArray.push(percentClicked * 100);
     }
   }
   var dataResults = {
