@@ -1,22 +1,59 @@
 html, body {
 font-size: 16px;
-background-color: #ddd;
+background-color: #FFF0A5;
+font-family: 'Roboto Condensed', sans-serif;
 }
 body {
 background-color: #fff;
 margin: 0 auto;
-padding: 30px;
+padding: 1px 30px 30px 30px;
 max-width: 960px;
+}
+h1 {
+color: #8e2800;
 }
 .selector-section {
 display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
+margin-bottom: 3rem;
 }
 .product-choices {
   flex-basis: calc(33% - 10px);
   max-width: 310px;
   border: 1px solid #000;
   border-radius: 25px;
+}
+hr {
+height: 1px;
+border: none;
+background-color: #ddd;
+}
+.button-section {
+  text-align: center;
+  display: none;
+}
+button {
+  padding: 10px 10px;
+  border: 1px solid #ccc;
+  margin: 0px 10px;
+}
+.confirm {
+  color: #fff;
+  background-color: #468966;
+}
+.deny {
+  color: #fff;
+  background-color: #B64926;
+}
+.chart-section {
+  margin: 0 auto;
+}
+/*made explicit for toggle function*/
+h2.instructions-h2 {
+display: block;
+}
+h2.results-h2 {
+  display: none;
 }
