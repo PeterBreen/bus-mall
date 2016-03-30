@@ -68,33 +68,32 @@ function displayCharts() {
   var conversionRateArray = [];
   for (i = 0; i < productArray.length; i++) {
     conversionRateArray.push(productArray[i].clickCount / productArray[i].displayCount);
-    console.table(conversionRateArray);
   }
   var dataResults = {
     labels: productLabelsArray,
     datasets: [
       {
         label: 'Times Displayed',
-        fillColor: 'rgba(220,220,220,0.5)',
-        strokeColor: 'rgba(220,220,220,0.8)',
-        highlightFill: 'rgba(220,220,220,0.75)',
-        highlightStroke: 'rgba(220,220,220,1)',
+        fillColor: 'rgba(70,137,102,0.5)',
+        strokeColor: 'rgba(70,137,102,0.8)',
+        highlightFill: 'rgba(70,137,102,0.75)',
+        highlightStroke: 'rgba(70,137,102,1)',
         data: productDisplayArray
       },
       {
         label: 'Times Clicked',
-        fillColor: 'rgba(151,187,205,0.5)',
-        strokeColor: 'rgba(151,187,205,0.8)',
-        highlightFill: 'rgba(151,187,205,0.75)',
-        highlightStroke: 'rgba(151,187,205,1)',
+        fillColor: 'rgba(255,176,59,0.5)',
+        strokeColor: 'rgba(255,176,59,0.8)',
+        highlightFill: 'rgba(255,176,59,0.75)',
+        highlightStroke: 'rgba(255,176,59,1)',
         data: productClicksArray
       },
       {
         label: 'Conversion Rate',
-        fillColor: 'rgba(222,222,222,0.5)',
-        strokeColor: 'rgba(222,222,222,0.8)',
-        highlightFill: 'rgba(222,22,222,0.75)',
-        highlightStroke: 'rgba(222,22,222,1)',
+        fillColor: 'rgba(142,40,0,0.5)',
+        strokeColor: 'rgba(142,40,0,0.8)',
+        highlightFill: 'rgba(142,40,0,0.75)',
+        highlightStroke: 'rgba(142,40,0,1)',
         data: conversionRateArray
       }
     ]
