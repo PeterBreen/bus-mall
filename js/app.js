@@ -55,7 +55,17 @@ function displayCharts() {
 
 function askUserToContinue() {
   console.log('Want to answer 10 more questions? Well? Do you?');
+  toggleVisibility('button-section');
 }
+
+function toggleVisibility(elementId) {
+  var checkVisibility = document.getElementById(elementId);
+  if(checkVisibility.style.display == 'block') {
+    checkVisibility.style.display = 'none';
+  } else {
+    checkVisibility.style.display = 'block';
+  }
+};
 
 //controls total clicks from  user - main logic loop
 function continueLoop() {
