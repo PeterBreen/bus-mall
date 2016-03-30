@@ -74,6 +74,8 @@ function clearImages() {
 
 function displayCharts() {
   console.log('LOOKS LIKE IT IS CHART TIME - you just called displayCharts()');
+  document.getElementById('instructions-h2').style.display = 'none';
+  toggleVisibility('results-h2');
   //SPECIAL CHART SUB-ZONE #4: I HATE UNDERWATER LEVELS IN MARIO GAMES
   var productLabelsArray = [];
   for (i = 0; i < productArray.length; i++) {
