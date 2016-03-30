@@ -65,6 +65,11 @@ function displayCharts() {
   for (i = 0; i < productArray.length; i++) {
     productDisplayArray.push(productArray[i].displayCount);
   }
+  var conversionRateArray = [];
+  for (i = 0; i < productArray.length; i++) {
+    conversionRateArray.push(productArray[i].clickCount / productArray[i].displayCount);
+    console.table(conversionRateArray);
+  }
   var dataResults = {
     labels: productLabelsArray,
     datasets: [
@@ -83,6 +88,14 @@ function displayCharts() {
         highlightFill: 'rgba(151,187,205,0.75)',
         highlightStroke: 'rgba(151,187,205,1)',
         data: productClicksArray
+      },
+      {
+        label: 'Conversion Rate',
+        fillColor: 'rgba(222,222,222,0.5)',
+        strokeColor: 'rgba(222,222,222,0.8)',
+        highlightFill: 'rgba(222,22,222,0.75)',
+        highlightStroke: 'rgba(222,22,222,1)',
+        data: conversionRateArray
       }
     ]
   };
