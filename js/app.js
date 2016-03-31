@@ -1,11 +1,9 @@
 //GLOBAL VARIABLES!
 //total number of clicks - after 25 offer choice to see stats
-var totalClicks = 0;
+var totalClicks = 20;
 //initialize product array - will be an array of objects via ProductSelection constructor
 var productArray = [];
 var productTitles = [];
-var storedClicks = [];
-var storedDisplays = [];
 //initialize all product variables
 var bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulu, dogduck, dragon, pen, petsweep, scissors, shark, sweep, tauntaun, unicorn, usb, watercan, wineglass;
 //probably variables I should keep track of ¯\_(ツ)_/¯
@@ -74,34 +72,6 @@ function clearImages() {
   }
 };
 
-//sum two arrays value by value - note inputs must be same length
-function sumArrayValues(input1, input2) {
-  combinedArray = [];
-  if(input1.length === input2.length) {
-    for (i = 0; i < input1.length; i++) {
-      combinedArray[i] += input1[i] += input2[i];
-    }
-    return combinedArray;
-  }
-}
-
-//get and combine localstorage values and combine with current session, then update localstorage
-function combinedClickTotal() {
-  var storedClicks = JSON.parse(localStorage.getItem('storedClicks'));
-  var currentClicks = [];
-  for (i = 0; i < productArray.length; i++) {
-    currentClicks.push(productArray[i].clickCount);
-  }
-  if (storedClicks) {
-    productClicksArray = sumArrayValues(storedClicks, currentClicks);
-    localStorage.setItem('storedClicks', JSON.stringify(productClicksArray));
-  } else {
-    productClicksArray = currentClicks;
-    localStorage.setItem('storedClicks', JSON.stringify(productClicksArray));
-  }
-  return productClicksArray;
-}
-
 function displayCharts() {
   console.log('LOOKS LIKE IT IS CHART TIME - you just called displayCharts()');
   document.getElementById('instructions-h2').style.display = 'none';
@@ -111,7 +81,10 @@ function displayCharts() {
   for (i = 0; i < productArray.length; i++) {
     productLabelsArray.push(productArray[i].displayName);
   }
-  var productClicksArray = combinedClickTotal();
+  var productClicksArray = [];
+  for (i = 0; i < productArray.length; i++) {
+    productClicksArray.push(productArray[i].clickCount);
+  }
   var productDisplayArray = [];
   for (i = 0; i < productArray.length; i++) {
     productDisplayArray.push(productArray[i].displayCount);
