@@ -4,8 +4,6 @@ var totalClicks = 20;
 //initialize product array - will be an array of objects via ProductSelection constructor
 var productArray = [];
 var productTitles = [];
-//initialize all product variables
-var bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulu, dogduck, dragon, pen, petsweep, scissors, shark, sweep, tauntaun, unicorn, usb, watercan, wineglass;
 //probably variables I should keep track of ¯\_(ツ)_/¯
 var imageForDom, trackImages, dataResults, ctx, testingResultsBarChart;
 //user wants to do 10 additional clicks after 25
@@ -216,26 +214,26 @@ function continueLoop() {
 };
 
 //create objects - one per product, then push into productArray;
-bag = productArray.push(new ProductSelection('img/bag.jpg','R2D2 Luggage'));
-banana = productArray.push(new ProductSelection('img/banana.jpg', 'Banana Slicer'));
-bathroom = productArray.push(new ProductSelection('img/bathroom.jpg','iPad TP Stand'));
-boots = productArray.push(new ProductSelection('img/boots.jpg','Yellow Rainboots'));
-breakfast = productArray.push(new ProductSelection('img/breakfast.jpg','AIO Breakfast Machine'));
-bubblegum = productArray.push(new ProductSelection('img/bubblegum.jpg','Meatball Gumballs'));
-chair = productArray.push(new ProductSelection('img/chair.jpg','Red Chair'));
-cthulhu = productArray.push(new ProductSelection('img/cthulhu.jpg','Cthulhu Figurine'));
-dogduck = productArray.push(new ProductSelection('img/dog-duck.jpg','Canine Duckmask'));
-dragon = productArray.push(new ProductSelection('img/dragon.png','Dragonmeat'));
-pen = productArray.push(new ProductSelection('img/pen.jpg','Utinsil Pen'));
-petsweep = productArray.push(new ProductSelection('img/pet-sweep.jpg','Pet Broom Slippers'));
-scissors = productArray.push(new ProductSelection('img/scissors.jpg','Pizza Scissors'));
-shark = productArray.push(new ProductSelection('img/shark.jpg','Shark Sleeping Bag'));
-sweep = productArray.push(new ProductSelection('img/sweep.png','Baby Sweeper Onesie'));
-tauntaun = productArray.push(new ProductSelection('img/tauntaun.jpg','Tauntaun Sleeping Bag'));
-unicorn = productArray.push(new ProductSelection('img/unicorn.jpg','Unicorn Meat'));
-usb = productArray.push(new ProductSelection('img/usb.gif','USB Powered Tentacle'));
-watercan = productArray.push(new ProductSelection('img/water-can.jpg','Boring Watering Can'));
-wineglass = productArray.push(new ProductSelection('img/wine-glass.jpg','Goofy Wineglass'));
+productArray.push(new ProductSelection('img/bag.jpg','R2D2 Luggage'));
+productArray.push(new ProductSelection('img/banana.jpg', 'Banana Slicer'));
+productArray.push(new ProductSelection('img/bathroom.jpg','iPad TP Stand'));
+productArray.push(new ProductSelection('img/boots.jpg','Yellow Rainboots'));
+productArray.push(new ProductSelection('img/breakfast.jpg','AIO Breakfast Machine'));
+productArray.push(new ProductSelection('img/bubblegum.jpg','Meatball Gumballs'));
+productArray.push(new ProductSelection('img/chair.jpg','Red Chair'));
+productArray.push(new ProductSelection('img/cthulhu.jpg','Cthulhu Figurine'));
+productArray.push(new ProductSelection('img/dog-duck.jpg','Canine Duckmask'));
+productArray.push(new ProductSelection('img/dragon.png','Dragonmeat'));
+productArray.push(new ProductSelection('img/pen.jpg','Utinsil Pen'));
+productArray.push(new ProductSelection('img/pet-sweep.jpg','Pet Broom Slippers'));
+productArray.push(new ProductSelection('img/scissors.jpg','Pizza Scissors'));
+productArray.push(new ProductSelection('img/shark.jpg','Shark Sleeping Bag'));
+productArray.push(new ProductSelection('img/sweep.png','Baby Sweeper Onesie'));
+productArray.push(new ProductSelection('img/tauntaun.jpg','Tauntaun Sleeping Bag'));
+productArray.push(new ProductSelection('img/unicorn.jpg','Unicorn Meat'));
+productArray.push(new ProductSelection('img/usb.gif','USB Powered Tentacle'));
+productArray.push(new ProductSelection('img/water-can.jpg','Boring Watering Can'));
+productArray.push(new ProductSelection('img/wine-glass.jpg','Goofy Wineglass'));
 
 //this function starts the party
 selectNewImages();
