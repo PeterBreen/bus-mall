@@ -139,34 +139,28 @@ function displayCharts() {
   var ctx = document.getElementById('myChart').getContext('2d');
   var testingResultsBarChart = new Chart(ctx).Bar(dataResults);
   //check if localstorage exists, if so add session+local, else just use session - for DISPLAY
-  function combDispNumbers() {
-    var localDisplay, combinedDisplay, tempDisp, tempDisplayStorage;
-    if (localStorage.getItem('locDisp')) {
-      tempDisplayStorage = localStorage.getItem('locDisp');
-      localDisplay = JSON.parse(tempDisplayStorage);
-      combinedDisplay = sumArrayValues(productDisplayArray, localDisplay);
-      tempDisp = JSON.stringify(combinedDisplay);
-      localStorage.setItem('locDisp', tempDisplayStorage);
-    } else {
-      var tempDisp = JSON.stringify(productDisplayArray);
-      localStorage.setItem('locDisp', tempDisplayStorage);
-    }
-    return tempDisp;
+  var localDisplay, combinedDisplay, tempDisp, tempDisplayStorage;
+  if (localStorage.getItem('locDisp')) {
+    tempDisplayStorage = localStorage.getItem('locDisp');
+    localDisplay = JSON.parse(tempDisplayStorage);
+    combinedDisplay = sumArrayValues(productDisplayArray, localDisplay);
+    tempDisp = JSON.stringify(combinedDisplay);
+    localStorage.setItem('locDisp', tempDispe);
+  } else {
+    var tempDisp = JSON.stringify(productDisplayArray);
+    localStorage.setItem('locDisp', tempDisp);
   }
   //check if localstorage exists, if so add session+local, else just use session - for CLICKS
-  function combClickNumbers() {
-    var localClicks, combinedClicks, tempClicks, tempClicksStorage;
-    if (localStorage.getItem('locClicks')) {
-      tempClicksStorage = localStorage.getItem('locClicks');
-      localClicks = JSON.parse(tempClicksStorage);
-      combinedClicks = sumArrayValues(productClicksArray, localClicks);
-      tempClicks = JSON.stringify(combinedClicks);
-      localStorage.setItem('locClicks', tempDisplayStorage);
-    } else {
-      var tempClicks = JSON.stringify(productClicksArray);
-      localStorage.setItem('locClicks', tempClicks);
-    }
-    return tempClicks;
+  var localClicks, combinedClicks, tempClicks, tempClicksStorage;
+  if (localStorage.getItem('locClicks')) {
+    tempClicksStorage = localStorage.getItem('locClicks');
+    localClicks = JSON.parse(tempClicksStorage);
+    combinedClicks = sumArrayValues(productClicksArray, localClicks);
+    tempClicks = JSON.stringify(combinedClicks);
+    localStorage.setItem('locClicks', tempClicks);
+  } else {
+    var tempClicks = JSON.stringify(productClicksArray);
+    localStorage.setItem('locClicks', tempClicks);
   }
 };
 
@@ -256,7 +250,7 @@ function handleImageClick(event){
     }
   }
   continueLoop();
-}
+};
 
 function userChoice(event){
   if (event.target.id === 'confirm') {
