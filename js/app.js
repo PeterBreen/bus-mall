@@ -37,6 +37,16 @@ function selectNewImages() {
     imageForDom.appendChild(img);
   }
 };
+//sum each index of two arrays, return a combined array - remember to pass localstorage as array2
+function sumArrayValues(array1, array2) {
+  var summedArray = [];
+  for (var i = 0; i < array1.length; i++){
+    summedArray.push(array1[i] + array2[i]);
+  }
+  return summedArray;
+}
+
+
 //shuffle array function - for randomizing. from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -129,7 +139,29 @@ function displayCharts() {
   };
   var ctx = document.getElementById('myChart').getContext('2d');
   var testingResultsBarChart = new Chart(ctx).Bar(dataResults);
-}
+  var localDisplay, combinedDisplay, tempDisp, tempDisplayStorage;
+  if (localStorage.getItem('locDisp')) {
+    tempDisplayStorage = localStorage.getItem('locDisp');
+    localDisplay = JSON.parse(tempDisplayStorage);
+    combinedDisplay = sumArrayValues(productDisplayArray, localDisplay);
+    tempDisp = JSON.stringify(combinedDisplay);
+    localStorage.setItem('locDisp', tempDisplayStorage);
+  } else {
+    var tempDisp = JSON.stringify(productDisplayArray);
+    localStorage.setItem('locDisp', tempDisplayStorage);
+  }
+  var localClicks, combinedClicks, tempClicks, tempClicksStorage;
+  if (localStorage.getItem('locClicks')) {
+    tempClicksStorage = localStorage.getItem('locClicks');
+    localClicks = JSON.parse(tempClicksStorage);
+    combinedClicks = sumArrayValues(productClicksArray, localClicks);
+    tempClicks = JSON.stringify(combinedClicks);
+    localStorage.setItem('locDisp', tempDisplayStorage);
+  } else {
+    var tempClicks = JSON.stringify(productClicksArray);
+    localStorage.setItem('locClicks', tempClicks);
+  }
+};
 
 function askUserToContinue() {
   console.log('Want to answer 10 more questions? Well? Do you? askUserToContinue() wants to know');
