@@ -46,7 +46,6 @@ function sumArrayValues(array1, array2) {
   return summedArray;
 }
 
-
 //shuffle array function - for randomizing. from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -139,27 +138,35 @@ function displayCharts() {
   };
   var ctx = document.getElementById('myChart').getContext('2d');
   var testingResultsBarChart = new Chart(ctx).Bar(dataResults);
-  var localDisplay, combinedDisplay, tempDisp, tempDisplayStorage;
-  if (localStorage.getItem('locDisp')) {
-    tempDisplayStorage = localStorage.getItem('locDisp');
-    localDisplay = JSON.parse(tempDisplayStorage);
-    combinedDisplay = sumArrayValues(productDisplayArray, localDisplay);
-    tempDisp = JSON.stringify(combinedDisplay);
-    localStorage.setItem('locDisp', tempDisplayStorage);
-  } else {
-    var tempDisp = JSON.stringify(productDisplayArray);
-    localStorage.setItem('locDisp', tempDisplayStorage);
+  //check if localstorage exists, if so add session+local, else just use session - for DISPLAY
+  function combDispNumbers() {
+    var localDisplay, combinedDisplay, tempDisp, tempDisplayStorage;
+    if (localStorage.getItem('locDisp')) {
+      tempDisplayStorage = localStorage.getItem('locDisp');
+      localDisplay = JSON.parse(tempDisplayStorage);
+      combinedDisplay = sumArrayValues(productDisplayArray, localDisplay);
+      tempDisp = JSON.stringify(combinedDisplay);
+      localStorage.setItem('locDisp', tempDisplayStorage);
+    } else {
+      var tempDisp = JSON.stringify(productDisplayArray);
+      localStorage.setItem('locDisp', tempDisplayStorage);
+    }
+    return tempDisp;
   }
-  var localClicks, combinedClicks, tempClicks, tempClicksStorage;
-  if (localStorage.getItem('locClicks')) {
-    tempClicksStorage = localStorage.getItem('locClicks');
-    localClicks = JSON.parse(tempClicksStorage);
-    combinedClicks = sumArrayValues(productClicksArray, localClicks);
-    tempClicks = JSON.stringify(combinedClicks);
-    localStorage.setItem('locDisp', tempDisplayStorage);
-  } else {
-    var tempClicks = JSON.stringify(productClicksArray);
-    localStorage.setItem('locClicks', tempClicks);
+  //check if localstorage exists, if so add session+local, else just use session - for CLICKS
+  function combClickNumbers() {
+    var localClicks, combinedClicks, tempClicks, tempClicksStorage;
+    if (localStorage.getItem('locClicks')) {
+      tempClicksStorage = localStorage.getItem('locClicks');
+      localClicks = JSON.parse(tempClicksStorage);
+      combinedClicks = sumArrayValues(productClicksArray, localClicks);
+      tempClicks = JSON.stringify(combinedClicks);
+      localStorage.setItem('locClicks', tempDisplayStorage);
+    } else {
+      var tempClicks = JSON.stringify(productClicksArray);
+      localStorage.setItem('locClicks', tempClicks);
+    }
+    return tempClicks;
   }
 };
 
