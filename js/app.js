@@ -98,9 +98,35 @@ function displayCharts() {
   for (i = 0; i < productArray.length; i++) {
     productDisplayArray.push(productArray[i].displayCount);
   }
+  //check if localstorage exists, if so add session+local, else just use session - for DISPLAY
+  var localDisplay, combinedDisplay, tempDisp, tempDisplayStorage;
+  if (localStorage.getItem('locDisp')) {
+    tempDisplayStorage = localStorage.getItem('locDisp');
+    localDisplay = JSON.parse(tempDisplayStorage);
+    combinedDisplay = sumArrayValues(productDisplayArray, localDisplay);
+    tempDisp = JSON.stringify(combinedDisplay);
+    localStorage.setItem('locDisp', tempDisp);
+  } else {
+    var tempDisp = JSON.stringify(productDisplayArray);
+    localStorage.setItem('locDisp', tempDisp);
+    combinedDisplay = productDisplayArray;
+  }
+  //check if localstorage exists, if so add session+local, else just use session - for CLICKS
+  var localClicks, combinedClicks, tempClicks, tempClicksStorage;
+  if (localStorage.getItem('locClicks')) {
+    tempClicksStorage = localStorage.getItem('locClicks');
+    localClicks = JSON.parse(tempClicksStorage);
+    combinedClicks = sumArrayValues(productClicksArray, localClicks);
+    tempClicks = JSON.stringify(combinedClicks);
+    localStorage.setItem('locClicks', tempClicks);
+  } else {
+    var tempClicks = JSON.stringify(productClicksArray);
+    localStorage.setItem('locClicks', tempClicks);
+    combinedClicks = productClicksArray;
+  }
   var conversionRateArray = [];
   for (i = 0; i < productArray.length; i++) {
-    var percentClicked = productArray[i].clickCount / productArray[i].displayCount;
+    var percentClicked = combinedClicks[i] / combinedDisplay[i];
     if(isNaN(percentClicked)) {
       conversionRateArray.push(0);
     } else {
@@ -116,7 +142,7 @@ function displayCharts() {
         strokeColor: 'rgba(70,137,102,0.8)',
         highlightFill: 'rgba(70,137,102,0.75)',
         highlightStroke: 'rgba(70,137,102,1)',
-        data: productDisplayArray
+        data: combinedDisplay
       },
       {
         label: 'Times Clicked',
@@ -124,7 +150,7 @@ function displayCharts() {
         strokeColor: 'rgba(255,176,59,0.8)',
         highlightFill: 'rgba(255,176,59,0.75)',
         highlightStroke: 'rgba(255,176,59,1)',
-        data: productClicksArray
+        data: combinedClicks
       },
       {
         label: 'Conversion Rate \%',
@@ -138,30 +164,6 @@ function displayCharts() {
   };
   var ctx = document.getElementById('myChart').getContext('2d');
   var testingResultsBarChart = new Chart(ctx).Bar(dataResults);
-  //check if localstorage exists, if so add session+local, else just use session - for DISPLAY
-  var localDisplay, combinedDisplay, tempDisp, tempDisplayStorage;
-  if (localStorage.getItem('locDisp')) {
-    tempDisplayStorage = localStorage.getItem('locDisp');
-    localDisplay = JSON.parse(tempDisplayStorage);
-    combinedDisplay = sumArrayValues(productDisplayArray, localDisplay);
-    tempDisp = JSON.stringify(combinedDisplay);
-    localStorage.setItem('locDisp', tempDispe);
-  } else {
-    var tempDisp = JSON.stringify(productDisplayArray);
-    localStorage.setItem('locDisp', tempDisp);
-  }
-  //check if localstorage exists, if so add session+local, else just use session - for CLICKS
-  var localClicks, combinedClicks, tempClicks, tempClicksStorage;
-  if (localStorage.getItem('locClicks')) {
-    tempClicksStorage = localStorage.getItem('locClicks');
-    localClicks = JSON.parse(tempClicksStorage);
-    combinedClicks = sumArrayValues(productClicksArray, localClicks);
-    tempClicks = JSON.stringify(combinedClicks);
-    localStorage.setItem('locClicks', tempClicks);
-  } else {
-    var tempClicks = JSON.stringify(productClicksArray);
-    localStorage.setItem('locClicks', tempClicks);
-  }
 };
 
 function askUserToContinue() {
