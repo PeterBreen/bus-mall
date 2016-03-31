@@ -1,6 +1,6 @@
 //GLOBAL VARIABLES!
 //total number of clicks - after 25 offer choice to see stats
-var totalClicks = 0;
+var totalClicks = 20;
 //initialize product array - will be an array of objects via ProductSelection constructor
 var productArray = [];
 var productTitles = [];
@@ -37,6 +37,15 @@ function selectNewImages() {
     imageForDom.appendChild(img);
   }
 };
+//sum each index of two arrays, return a combined array - remember to pass localstorage as array2
+function sumArrayValues(array1, array2) {
+  var summedArray = [];
+  for (var i = 0; i < array1.length; i++){
+    summedArray.push(array1[i] + array2[i]);
+  }
+  return summedArray;
+}
+
 //shuffle array function - for randomizing. from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -89,9 +98,35 @@ function displayCharts() {
   for (i = 0; i < productArray.length; i++) {
     productDisplayArray.push(productArray[i].displayCount);
   }
+  //check if localstorage exists, if so add session+local, else just use session - for DISPLAY
+  var localDisplay, combinedDisplay, tempDisp, tempDisplayStorage;
+  if (localStorage.getItem('locDisp')) {
+    tempDisplayStorage = localStorage.getItem('locDisp');
+    localDisplay = JSON.parse(tempDisplayStorage);
+    combinedDisplay = sumArrayValues(productDisplayArray, localDisplay);
+    tempDisp = JSON.stringify(combinedDisplay);
+    localStorage.setItem('locDisp', tempDisp);
+  } else {
+    var tempDisp = JSON.stringify(productDisplayArray);
+    localStorage.setItem('locDisp', tempDisp);
+    combinedDisplay = productDisplayArray;
+  }
+  //check if localstorage exists, if so add session+local, else just use session - for CLICKS
+  var localClicks, combinedClicks, tempClicks, tempClicksStorage;
+  if (localStorage.getItem('locClicks')) {
+    tempClicksStorage = localStorage.getItem('locClicks');
+    localClicks = JSON.parse(tempClicksStorage);
+    combinedClicks = sumArrayValues(productClicksArray, localClicks);
+    tempClicks = JSON.stringify(combinedClicks);
+    localStorage.setItem('locClicks', tempClicks);
+  } else {
+    var tempClicks = JSON.stringify(productClicksArray);
+    localStorage.setItem('locClicks', tempClicks);
+    combinedClicks = productClicksArray;
+  }
   var conversionRateArray = [];
   for (i = 0; i < productArray.length; i++) {
-    var percentClicked = productArray[i].clickCount / productArray[i].displayCount;
+    var percentClicked = combinedClicks[i] / combinedDisplay[i];
     if(isNaN(percentClicked)) {
       conversionRateArray.push(0);
     } else {
@@ -107,7 +142,7 @@ function displayCharts() {
         strokeColor: 'rgba(70,137,102,0.8)',
         highlightFill: 'rgba(70,137,102,0.75)',
         highlightStroke: 'rgba(70,137,102,1)',
-        data: productDisplayArray
+        data: combinedDisplay
       },
       {
         label: 'Times Clicked',
@@ -115,7 +150,7 @@ function displayCharts() {
         strokeColor: 'rgba(255,176,59,0.8)',
         highlightFill: 'rgba(255,176,59,0.75)',
         highlightStroke: 'rgba(255,176,59,1)',
-        data: productClicksArray
+        data: combinedClicks
       },
       {
         label: 'Conversion Rate \%',
@@ -129,7 +164,7 @@ function displayCharts() {
   };
   var ctx = document.getElementById('myChart').getContext('2d');
   var testingResultsBarChart = new Chart(ctx).Bar(dataResults);
-}
+};
 
 function askUserToContinue() {
   console.log('Want to answer 10 more questions? Well? Do you? askUserToContinue() wants to know');
@@ -190,7 +225,7 @@ bubblegum = productArray.push(new ProductSelection('img/bubblegum.jpg','Meatball
 chair = productArray.push(new ProductSelection('img/chair.jpg','Red Chair'));
 cthulhu = productArray.push(new ProductSelection('img/cthulhu.jpg','Cthulhu Figurine'));
 dogduck = productArray.push(new ProductSelection('img/dog-duck.jpg','Canine Duckmask'));
-dragon = productArray.push(new ProductSelection('img/dragon.jpg','Dragonmeat'));
+dragon = productArray.push(new ProductSelection('img/dragon.png','Dragonmeat'));
 pen = productArray.push(new ProductSelection('img/pen.jpg','Utinsil Pen'));
 petsweep = productArray.push(new ProductSelection('img/pet-sweep.jpg','Pet Broom Slippers'));
 scissors = productArray.push(new ProductSelection('img/scissors.jpg','Pizza Scissors'));
@@ -217,7 +252,7 @@ function handleImageClick(event){
     }
   }
   continueLoop();
-}
+};
 
 function userChoice(event){
   if (event.target.id === 'confirm') {
