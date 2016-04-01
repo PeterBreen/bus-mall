@@ -36,13 +36,9 @@ margin-bottom: 3rem;
   max-width: 310px;
   border: 1px solid #000;
   border-radius: 25px;
-  -ms-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
 }
 .product-choices:hover {
-  transform: scale(1.2);
+  border: 3px solid #8e2800;
 }
 hr {
 height: 1px;
