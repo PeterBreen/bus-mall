@@ -28,7 +28,7 @@ function selectNewImages() {
     //create element for DOM, attach to DOM, iterate displayCount++
     var imageForDom = document.getElementById('selector-section');
     var img = document.createElement('img');
-    img.className += ' product-choices';
+    img.className += ' animated zoomInUp product-choices';
     img.id = productArray[randNum[i]].identity;
     img.src = productArray[randNum[i]].imageLink;
     productArray[randNum[i]].displayCount++;
