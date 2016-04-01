@@ -11,6 +11,18 @@ max-width: 960px;
 }
 h1 {
 color: #8e2800;
+font-size: 2.75rem;
+-ms-transition: all 60s ease;
+-moz-transition: all 60s ease;
+-o-transition: all 60s ease;
+transition: all 60s ease;
+}
+h1:hover {
+  transform: translateX(8rem);
+}
+h1:hover::after {
+  content: url(../img/bus-emoji.png);
+  margin-left: 1rem;
 }
 .selector-section {
 display: flex;
@@ -24,11 +36,13 @@ margin-bottom: 3rem;
   max-width: 310px;
   border: 1px solid #000;
   border-radius: 25px;
+  -ms-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
   transition: all 0.25s ease;
 }
 .product-choices:hover {
   transform: scale(1.2);
-  z-index: 5;
 }
 hr {
 height: 1px;
