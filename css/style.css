@@ -28,6 +28,7 @@ margin-bottom: 3rem;
 }
 .product-choices:hover {
   transform: scale(1.2);
+  z-index: 5;
 }
 hr {
 height: 1px;
