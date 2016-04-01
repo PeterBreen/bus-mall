@@ -24,7 +24,7 @@ margin-bottom: 3rem;
   max-width: 310px;
   border: 1px solid #000;
   border-radius: 25px;
-  transition: all 0.5s ease;
+  transition: all 0.25s ease;
 }
 .product-choices:hover {
   transform: scale(1.2);
