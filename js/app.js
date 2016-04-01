@@ -175,6 +175,7 @@ function toggleVisibility(elementId) {
     checkVisibility.style.display = 'none';
   } else {
     checkVisibility.style.display = 'block';
+    checkVisibility.className += ' animated fadeInLeftBig';
   }
 };
 
