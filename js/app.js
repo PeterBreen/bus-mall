@@ -162,6 +162,7 @@ function displayCharts() {
   };
   var ctx = document.getElementById('myChart').getContext('2d');
   var testingResultsBarChart = new Chart(ctx).Bar(dataResults);
+  toggleVisibility('clear-local');
 };
 
 function askUserToContinue() {
@@ -268,6 +269,12 @@ function userChoice(event){
   }
 };
 
+function clearLocalStorage(click) {
+  localStorage.clear();
+  console.log('you just cleared all that poor, innocent localstorage');
+  toggleVisibility('clear-local');
+}
+
 //event listeners - listens for user clicks
 var trackImages = document.getElementsByClassName('product-choices');
 for (var i = 0; i < trackImages.length; i++){
@@ -277,3 +284,5 @@ var userChoiceSelection = document.getElementsByClassName('button');
 for (var i = 0; i < userChoiceSelection.length; i++){
   userChoiceSelection[i].addEventListener('click', userChoice);
 }
+var clearLocal = document.getElementById('clear-local');
+clearLocal.addEventListener('click', clearLocalStorage);
