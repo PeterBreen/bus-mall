@@ -28,7 +28,7 @@ function selectNewImages() {
     //create element for DOM, attach to DOM, iterate displayCount++
     var imageForDom = document.getElementById('selector-section');
     var img = document.createElement('img');
-    img.className += ' product-choices';
+    img.className += ' animated zoomInUp product-choices';
     img.id = productArray[randNum[i]].identity;
     img.src = productArray[randNum[i]].imageLink;
     productArray[randNum[i]].displayCount++;
@@ -60,7 +60,7 @@ function shuffle(array) {
   return array;
 }
 
-//randomizer function
+//randomizer function - selects 3, change splice for more up to array.length
 function getRandomArray() {
   // return Math.floor(Math.random() * (max - min + 1)) + min;
   var shuffledArray = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]);
@@ -162,6 +162,7 @@ function displayCharts() {
   };
   var ctx = document.getElementById('myChart').getContext('2d');
   var testingResultsBarChart = new Chart(ctx).Bar(dataResults);
+  toggleVisibility('clear-local');
 };
 
 function askUserToContinue() {
@@ -175,6 +176,7 @@ function toggleVisibility(elementId) {
     checkVisibility.style.display = 'none';
   } else {
     checkVisibility.style.display = 'block';
+    checkVisibility.className += ' animated fadeInLeftBig';
   }
 };
 
@@ -267,6 +269,12 @@ function userChoice(event){
   }
 };
 
+function clearLocalStorage(click) {
+  localStorage.clear();
+  console.log('you just cleared all that poor, innocent localstorage');
+  toggleVisibility('clear-local');
+}
+
 //event listeners - listens for user clicks
 var trackImages = document.getElementsByClassName('product-choices');
 for (var i = 0; i < trackImages.length; i++){
@@ -276,3 +284,5 @@ var userChoiceSelection = document.getElementsByClassName('button');
 for (var i = 0; i < userChoiceSelection.length; i++){
   userChoiceSelection[i].addEventListener('click', userChoice);
 }
+var clearLocal = document.getElementById('clear-local');
+clearLocal.addEventListener('click', clearLocalStorage);
