@@ -67,7 +67,6 @@ function getRandomArray() {
   //splice to only return 3 values
   var randomThreeArray = shuffledArray.splice(0, 3);
   //return array of 3 random no-duplicate numbers
-  console.log('random3array: ', randomThreeArray);
   return randomThreeArray;
 };
 
@@ -241,9 +240,7 @@ selectNewImages();
 //event handler - totalClicks++ counts total number of image iterations so the option for charts can be given at 25 and 35 (potentially 45, 55, etc...?)
 function handleImageClick(event){
   totalClicks++;
-  console.log('current totalClicks: ', totalClicks);
   var currentImageIdentity = event.target.id;
-  console.log('event.target.id ', currentImageIdentity);
   for (i = 0; i < productArray.length; i++) {
     if (currentImageIdentity === productArray[i].identity) {
       productArray[i].clickCount++;
@@ -261,7 +258,6 @@ function userChoice(event){
       trackImages[i].addEventListener('click', handleImageClick);
     }
   } else {
-    console.log('userChoice() - user wants to go to charts');
     toggleVisibility('button-section');
     displayCharts();
   }
@@ -269,7 +265,6 @@ function userChoice(event){
 
 function clearLocalStorage(click) {
   localStorage.clear();
-  console.log('you just cleared all that poor, innocent localstorage');
   toggleVisibility('clear-local');
 }
 
