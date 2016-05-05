@@ -1,12 +1,12 @@
 //GLOBAL VARIABLES!
 //total number of clicks - after 25 offer choice to see stats
-var totalClicks = 20;
+var totalClicks = 0;
 //initialize product array - will be an array of objects via ProductSelection constructor
 var productArray = [];
 var productTitles = [];
 //probably variables I should keep track of ¯\_(ツ)_/¯
 var imageForDom, trackImages, dataResults, ctx, testingResultsBarChart;
-//user wants to do 10 additional clicks after 25
+//if user wants to do 10 additional selections after 25
 var userMoreTesting = false;
 
 //OBJECT CONSTRUCTORS
@@ -80,7 +80,6 @@ function clearImages() {
 };
 
 function displayCharts() {
-  console.log('LOOKS LIKE IT IS CHART TIME - you just called displayCharts()');
   document.getElementById('instructions-h2').style.display = 'none';
   toggleVisibility('results-h2');
   //SPECIAL CHART SUB-ZONE #4: I HATE UNDERWATER LEVELS IN MARIO GAMES
@@ -166,7 +165,6 @@ function displayCharts() {
 };
 
 function askUserToContinue() {
-  console.log('Want to answer 10 more questions? Well? Do you? askUserToContinue() wants to know');
   toggleVisibility('button-section');
 }
 
